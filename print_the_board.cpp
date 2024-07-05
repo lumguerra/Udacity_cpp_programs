@@ -40,32 +40,31 @@ std::vector<std::string> inputFile(std::string file_path)
 }
 
 // extract integers from a vector of strings into a vector of ints
-std::vector<std::vector<int>> extractInts(std::vector<std::string> str_vec)
-{
-  std::vector<std::vector<int>> int_vec;
-  for (int i = 0; i < str_vec.size(); ++i)
-  {
-    std::istringstream str_stream(str_vec[i]);
-    int n;
-    int c;
-    std::vector<int> v;
-    while (str_stream >> n >> c && c == ',')
-    {
-      str_stream >> n;
-      v.push_back(n);
-    }
-    printVector(v);
-    int_vec.push_back(v);
-  }
+std::vector<std::vector<int>> extractInts(const std::vector<std::string>& str_vec) {
+    std::vector<std::vector<int>> int_vec;
 
-  return int_vec;
+    for (const std::string& str : str_vec) {
+        std::istringstream str_stream(str);
+        int n;
+        char c;
+        std::vector<int> v;
+
+        while (str_stream >> n) {
+            v.push_back(n);
+            str_stream >> c; // Read the comma
+        }
+
+        int_vec.push_back(v);
+        printVector(v);
+    }
+
+    return int_vec;
 }
 
 int main()
 {
 
-  std::vector<std::string> v = inputFile("file_exemple.txt");
-  extractInts(v);
+  extractInts(inputFile("file_exemple.txt"));
 
   return 0;
 }
