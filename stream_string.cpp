@@ -8,9 +8,9 @@ using std::ifstream;
 using std::istringstream;
 using std::string;
 using std::vector;
-// TODO: Add the ParseLine function here.
 
-int main() {
+int main()
+{
 
   string s{"1, 2, 3, 4, 5, 6 "};
 
@@ -20,11 +20,13 @@ int main() {
   char c;
   char j;
 
-  while(input_string >> n >> c){
+  while (input_string >> n >> c)
+  {
     v.push_back(n);
   }
 
-  for (int i : v) {
+  for (int i : v)
+  {
     cout << i << "\n";
   }
 
